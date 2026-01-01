@@ -1,4 +1,4 @@
-
+import ClickMe from "@/components/ClickMe"
 
 export default async function Dashboard(){
 
@@ -13,8 +13,11 @@ export default async function Dashboard(){
          <li key={task.id} className="border p-3 rounded">
          {task.title} {task.completed? '✅' : '⏳'}   
          </li>
+
       ))}   
       </ul>   
+
+<ClickMe/>
       </div>
    )
      
