@@ -1,4 +1,4 @@
-import ClickMe from "@/components/ClickMe"
+import TaskToggle from "@/components/TaskToggle"
 
 export default async function Dashboard(){
 
@@ -17,7 +17,7 @@ export default async function Dashboard(){
       ))}   
       </ul>   
 
-<ClickMe/>
+<TaskToggle/>
       </div>
    )
      
