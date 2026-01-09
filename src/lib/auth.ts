@@ -1,20 +1,20 @@
+// src/lib/auth.ts
 import { cookies } from "next/headers";
 
 type User = {
-
-id: string,
-email:string
+  id: string;
+  email: string;
 };
 
-export function getCurrentUser(): User | null {
-    const session = cookies().get("session")?.value;
+export async function getCurrentUser(): Promise<User | null>{
+    const cookieStore = await cookies();
 
-    if(!session){
-        return null;
-    }
+    const sessionCookie = cookieStore.get("session")
+
+    if(!sessionCookie) return null;
 
     return {
-        id: "demo-user-id",
+        id:"demo-user-id",
         email:"demo@internhub.com"
-    };
+    }
 }
