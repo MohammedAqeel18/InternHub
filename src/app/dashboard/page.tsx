@@ -1,20 +1,36 @@
 
 import { getCurrentUser } from "@/lib/auth"
-import { redirect } from "next/navigation"
+import { connectToDatabse } from "@/lib/db";
+import TaskForm from "./task-form";
+import TaskList from "./task-list";
 
 export default async function Dashboard(){
 
+  
     const user = await getCurrentUser();
+    
+    // if(!user) redirect("/login")
+        
+        const {db} = await connectToDatabse(
+            process.env.MONGODB_URI!,
+            process.env.MONGODB_DB_Name!
+        );
 
-    if(!user){
-        redirect("/login")
-    }
-
-
-    return(
+        const tasks = await db 
+        .collection("tasks")
+        .find({userId: user.id})
+        .toArray();
+            return(
         <div>
         <h1> Welcome, {user.email}</h1>
-        <p> This is your dashboard data will be load here</p>    
+       <TaskForm/>
+      <TaskList
+        tasks={tasks.map(task => ({
+          _id: task._id.toString(),
+          name: task.name
+        }))}
+      />
         </div>
     )
 }
+

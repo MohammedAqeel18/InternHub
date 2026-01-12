@@ -7,11 +7,11 @@ type User = {
 };
 
 export async function getCurrentUser(): Promise<User | null>{
-    const cookieStore = await cookies();
+    //const cookieStore = await cookies();
 
-    const sessionCookie = cookieStore.get("session")
+    //const sessionCookie = cookieStore.get("session")
 
-    if(!sessionCookie) return null;
+    //if(!sessionCookie) return null;
 
     return {
         id:"demo-user-id",
