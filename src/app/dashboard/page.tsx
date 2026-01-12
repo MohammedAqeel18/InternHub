@@ -1,6 +1,7 @@
 
 import { getCurrentUser } from "@/lib/auth"
 import { connectToDatabse } from "@/lib/db";
+import { redirect } from "next/navigation";
 import TaskForm from "./task-form";
 import TaskList from "./task-list";
 
@@ -9,7 +10,7 @@ export default async function Dashboard(){
   
     const user = await getCurrentUser();
     
-    // if(!user) redirect("/login")
+    if(!user) redirect("/login")
         
         const {db} = await connectToDatabse(
             process.env.MONGODB_URI!,
